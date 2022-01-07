@@ -1,3 +1,3 @@
-# Terraform <TODO> examples
+# Terraform AWS MemoryDB examples
 
-- [Complete](./complete)
+- [Complete](https://github.com/clowdhaus/terraform-aws-memory-db/tree/main/examples/complete)
