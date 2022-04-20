@@ -13,63 +13,6 @@ locals {
 }
 
 ################################################################################
-# Supporting Resources
-################################################################################
-
-module "vpc" {
-  source  = "terraform-aws-modules/vpc/aws"
-  version = "~> 3.0"
-
-  name = local.name
-  cidr = "10.99.0.0/18"
-
-  azs              = ["${local.region}a", "${local.region}b", "${local.region}d"] # Caution: check which zones are available
-  private_subnets  = ["10.99.0.0/24", "10.99.1.0/24", "10.99.2.0/24"]
-  database_subnets = ["10.99.3.0/24", "10.99.4.0/24", "10.99.5.0/24"]
-
-  create_database_subnet_group = true
-  enable_nat_gateway           = false
-
-  manage_default_security_group  = true
-  default_security_group_ingress = []
-  default_security_group_egress  = []
-
-  tags = local.tags
-}
-
-module "security_group" {
-  source  = "terraform-aws-modules/security-group/aws"
-  version = "~> 4.0"
-
-  name        = local.name
-  description = "Security group for ${local.name}"
-  vpc_id      = module.vpc.vpc_id
-
-  ingress_cidr_blocks = module.vpc.private_subnets_cidr_blocks
-  ingress_rules       = ["redis-tcp"]
-
-  egress_cidr_blocks = [module.vpc.vpc_cidr_block]
-  egress_rules       = ["all-all"]
-
-  tags = local.tags
-}
-
-resource "aws_sns_topic" "example" {
-  name              = local.name
-  kms_master_key_id = "alias/aws/sns"
-
-  tags = local.tags
-}
-
-resource "random_password" "password" {
-  for_each = toset(["admin", "readonly"])
-
-  length           = 16
-  special          = true
-  override_special = "_%@"
-}
-
-################################################################################
 # MemoryDB Module
 ################################################################################
 
@@ -143,4 +86,61 @@ module "memory_db" {
   }
 
   tags = local.tags
+}
+
+################################################################################
+# Supporting Resources
+################################################################################
+
+module "vpc" {
+  source  = "terraform-aws-modules/vpc/aws"
+  version = "~> 3.0"
+
+  name = local.name
+  cidr = "10.99.0.0/18"
+
+  azs              = ["${local.region}a", "${local.region}b", "${local.region}d"] # Caution: check which zones are available
+  private_subnets  = ["10.99.0.0/24", "10.99.1.0/24", "10.99.2.0/24"]
+  database_subnets = ["10.99.3.0/24", "10.99.4.0/24", "10.99.5.0/24"]
+
+  create_database_subnet_group = true
+  enable_nat_gateway           = false
+
+  manage_default_security_group  = true
+  default_security_group_ingress = []
+  default_security_group_egress  = []
+
+  tags = local.tags
+}
+
+module "security_group" {
+  source  = "terraform-aws-modules/security-group/aws"
+  version = "~> 4.0"
+
+  name        = local.name
+  description = "Security group for ${local.name}"
+  vpc_id      = module.vpc.vpc_id
+
+  ingress_cidr_blocks = module.vpc.private_subnets_cidr_blocks
+  ingress_rules       = ["redis-tcp"]
+
+  egress_cidr_blocks = [module.vpc.vpc_cidr_block]
+  egress_rules       = ["all-all"]
+
+  tags = local.tags
+}
+
+resource "aws_sns_topic" "example" {
+  name              = local.name
+  kms_master_key_id = "alias/aws/sns"
+
+  tags = local.tags
+}
+
+resource "random_password" "password" {
+  for_each = toset(["admin", "readonly"])
+
+  length           = 16
+  special          = true
+  override_special = "_%@"
 }

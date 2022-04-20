@@ -77,4 +77,4 @@ No inputs.
 | <a name="output_users"></a> [users](#output\_users) | Map of attributes for the users created |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
-Apache-2.0 Licensed. See [LICENSE](https://github.com/clowdhaus/terraform-aws-memory-db/blob/main/LICENSE).
+Apache-2.0 Licensed. See [LICENSE](https://github.com/terraform-aws-modules/terraform-aws-memory-db/blob/main/LICENSE).
