@@ -1,19 +1,10 @@
 # AWS MemoryDB Terraform module
 
-## ⚠️ Module has moved to `terraform-aws-modules`
-
-This module has moved to the terraform-aws-modules organization. Users will need to update their module source:
-
-```diff
-- source = "clowdhaus/memory-db/aws"
-+ source = "terraform-aws-modules/memory-db/aws"
-```
-
 Terraform module which creates AWS MemoryDB resources.
 
 ## Usage
 
-See [`examples`](https://github.com/terraform-aws-modules/terraform-aws-memory-db/tree/main/examples) directory for working examples to reference:
+See [`examples`](https://github.com/terraform-aws-modules/terraform-aws-memory-db/tree/master/examples) directory for working examples to reference:
 
 ```hcl
 module "memory_db" {
@@ -117,9 +108,9 @@ module "memory_db" {
 
 ## Examples
 
-Examples codified under the [`examples`](https://github.com/terraform-aws-modules/terraform-aws-memory-db/tree/main/examples) are intended to give users references for how to use the module(s) as well as testing/validating changes to the source code of the module. If contributing to the project, please be sure to make any appropriate updates to the relevant examples to allow maintainers to test your changes and to keep the examples up to date for users. Thank you!
+Examples codified under the [`examples`](https://github.com/terraform-aws-modules/terraform-aws-memory-db/tree/master/examples) are intended to give users references for how to use the module(s) as well as testing/validating changes to the source code of the module. If contributing to the project, please be sure to make any appropriate updates to the relevant examples to allow maintainers to test your changes and to keep the examples up to date for users. Thank you!
 
-- [Complete](https://github.com/terraform-aws-modules/terraform-aws-memory-db/tree/main/examples/complete)
+- [Complete](https://github.com/terraform-aws-modules/terraform-aws-memory-db/tree/master/examples/complete)
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -218,4 +209,4 @@ No modules.
 
 ## License
 
-Apache-2.0 Licensed. See [LICENSE](https://github.com/terraform-aws-modules/terraform-aws-memory-db/blob/main/LICENSE).
+Apache-2.0 Licensed. See [LICENSE](https://github.com/terraform-aws-modules/terraform-aws-memory-db/blob/master/LICENSE).
