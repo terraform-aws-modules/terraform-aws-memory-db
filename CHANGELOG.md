@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+### [1.1.2](https://github.com/terraform-aws-modules/terraform-aws-memory-db/compare/v1.1.1...v1.1.2) (2022-11-07)
+
+
+### Bug Fixes
+
+* Update CI configuration files to use latest version ([#2](https://github.com/terraform-aws-modules/terraform-aws-memory-db/issues/2)) ([b5e4e36](https://github.com/terraform-aws-modules/terraform-aws-memory-db/commit/b5e4e36d3702772163698318ce7fe7ef7cc47668))
+
 ### [1.1.1](https://github.com/terraform-aws-modules/terraform-aws-memory-db/compare/v1.1.0...v1.1.1) (2022-04-21)
 
 
