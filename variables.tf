@@ -128,6 +128,12 @@ variable "final_snapshot_name" {
   default     = null
 }
 
+variable "data_tiering" {
+  description = "Must be set to `true` when using a data tiering node type"
+  type        = bool
+  default     = null
+}
+
 ################################################################################
 # User(s)
 ################################################################################
