@@ -154,6 +154,7 @@ No modules.
 | <a name="input_create_parameter_group"></a> [create\_parameter\_group](#input\_create\_parameter\_group) | Determines whether to create parameter group specified | `bool` | `true` | no |
 | <a name="input_create_subnet_group"></a> [create\_subnet\_group](#input\_create\_subnet\_group) | Determines whether to create subnet group specified | `bool` | `true` | no |
 | <a name="input_create_users"></a> [create\_users](#input\_create\_users) | Determines whether to create users specified | `bool` | `true` | no |
+| <a name="input_data_tiering"></a> [data\_tiering](#input\_data\_tiering) | Must be set to `true` when using a data tiering node type. | `bool` | `null` | no |
 | <a name="input_description"></a> [description](#input\_description) | Description for the cluster. Defaults to `Managed by Terraform` | `string` | `null` | no |
 | <a name="input_engine_version"></a> [engine\_version](#input\_engine\_version) | Version number of the Redis engine to be used for the cluster. Downgrades are not supported | `string` | `null` | no |
 | <a name="input_final_snapshot_name"></a> [final\_snapshot\_name](#input\_final\_snapshot\_name) | Name of the final cluster snapshot to be created when this resource is deleted. If omitted, no final snapshot will be made | `string` | `null` | no |
@@ -163,7 +164,6 @@ No modules.
 | <a name="input_node_type"></a> [node\_type](#input\_node\_type) | The compute and memory capacity of the nodes in the cluster. See AWS documentation on [supported node types](https://docs.aws.amazon.com/memorydb/latest/devguide/nodes.supportedtypes.html) as well as [vertical scaling](https://docs.aws.amazon.com/memorydb/latest/devguide/cluster-vertical-scaling.html) | `string` | `null` | no |
 | <a name="input_num_replicas_per_shard"></a> [num\_replicas\_per\_shard](#input\_num\_replicas\_per\_shard) | The number of replicas to apply to each shard, up to a maximum of 5. Defaults to `1` (i.e. 2 nodes per shard) | `number` | `null` | no |
 | <a name="input_num_shards"></a> [num\_shards](#input\_num\_shards) | The number of shards in the cluster. Defaults to `1` | `number` | `null` | no |
-| <a name="input_data_tiering"></a> [data\_tiering](#input\_data\_tiering) | Must be set to `true` when using a data tiering node type. | `bool` | `null` | no |
 | <a name="input_parameter_group_description"></a> [parameter\_group\_description](#input\_parameter\_group\_description) | Description for the parameter group. Defaults to `Managed by Terraform` | `string` | `null` | no |
 | <a name="input_parameter_group_family"></a> [parameter\_group\_family](#input\_parameter\_group\_family) | The engine version that the parameter group can be used with | `string` | `null` | no |
 | <a name="input_parameter_group_name"></a> [parameter\_group\_name](#input\_parameter\_group\_name) | Name of parameter group to be created if `create_parameter_group` is `true`, otherwise its the name of an existing parameter group to use if `create_parameter_group` is `false` | `string` | `null` | no |
