@@ -32,9 +32,10 @@ module "memory_db" {
 
   engine_version             = "6.2"
   auto_minor_version_upgrade = true
-  node_type                  = "db.t4g.small"
+  node_type                  = "db.r6gd.xlarge"
   num_shards                 = 2
   num_replicas_per_shard     = 2
+  data_tiering               = true
 
   tls_enabled              = true
   security_group_ids       = [module.security_group.security_group_id]
@@ -94,7 +95,7 @@ module "memory_db" {
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "~> 3.0"
+  version = "~> 4.0"
 
   name = local.name
   cidr = "10.99.0.0/18"
