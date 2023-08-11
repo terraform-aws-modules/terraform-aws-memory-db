@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0](https://github.com/terraform-aws-modules/terraform-aws-memory-db/compare/v1.1.2...v2.0.0) (2023-08-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* Add support for data tiering attribute, bump minimum supported versions of Terraform and AWS provider (#5)
+
+### Features
+
+* Add support for data tiering attribute, bump minimum supported versions of Terraform and AWS provider ([#5](https://github.com/terraform-aws-modules/terraform-aws-memory-db/issues/5)) ([1c94464](https://github.com/terraform-aws-modules/terraform-aws-memory-db/commit/1c94464a0b18e4355988b776973f64cf6f76625a))
+
 ### [1.1.2](https://github.com/terraform-aws-modules/terraform-aws-memory-db/compare/v1.1.1...v1.1.2) (2022-11-07)
 
 
