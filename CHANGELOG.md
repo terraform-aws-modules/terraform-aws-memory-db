@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.1](https://github.com/terraform-aws-modules/terraform-aws-memory-db/compare/v2.0.0...v2.0.1) (2024-03-06)
+
+
+### Bug Fixes
+
+* Update CI workflow versions to remove deprecated runtime warnings ([#6](https://github.com/terraform-aws-modules/terraform-aws-memory-db/issues/6)) ([bdd40c4](https://github.com/terraform-aws-modules/terraform-aws-memory-db/commit/bdd40c4449e27134a5a66da46d1d24a61bb5d391))
+
 ## [2.0.0](https://github.com/terraform-aws-modules/terraform-aws-memory-db/compare/v1.1.2...v2.0.0) (2023-08-11)
 
 
