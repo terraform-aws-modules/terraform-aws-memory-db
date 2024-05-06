@@ -146,7 +146,7 @@ variable "create_users" {
 
 variable "users" {
   description = "A map of user definitions (maps) to be created"
-  type        = map(any)
+  type        = any
   default     = {}
 }
 

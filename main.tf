@@ -58,8 +58,8 @@ resource "aws_memorydb_user" "this" {
   access_string = each.value.access_string
 
   authentication_mode {
-    type      = "password"
-    passwords = each.value.passwords
+    type      = try(each.value.type, "password")
+    passwords = try(each.value.passwords, null)
   }
 
   tags = merge(var.tags, lookup(each.value, "tags", {}))
