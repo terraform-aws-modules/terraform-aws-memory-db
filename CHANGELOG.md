@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.1.0](https://github.com/terraform-aws-modules/terraform-aws-memory-db/compare/v2.0.1...v2.1.0) (2024-05-07)
+
+
+### Features
+
+* Support IAM Auth mode for memorydb cluster ([#8](https://github.com/terraform-aws-modules/terraform-aws-memory-db/issues/8)) ([6ad6de0](https://github.com/terraform-aws-modules/terraform-aws-memory-db/commit/6ad6de024f49d24655299d567163b8109ec4d526))
+
 ## [2.0.1](https://github.com/terraform-aws-modules/terraform-aws-memory-db/compare/v2.0.0...v2.0.1) (2024-03-06)
 
 
