@@ -30,7 +30,7 @@ module "memory_db" {
   name        = local.name
   description = "Example MemoryDB cluster"
 
-  engine_version             = "6.2"
+  engine_version             = "7.0"
   auto_minor_version_upgrade = true
   node_type                  = "db.r6gd.xlarge"
   num_shards                 = 2
@@ -49,13 +49,13 @@ module "memory_db" {
     admin = {
       user_name     = "admin-user"
       access_string = "on ~* &* +@all"
-      passwords     = [random_password.password["admin"].result]
+      type          = "iam"
       tags          = { user = "admin" }
     }
     readonly = {
       user_name     = "readonly-user"
       access_string = "on ~* &* -@all +@read"
-      passwords     = [random_password.password["readonly"].result]
+      passwords     = [random_password.password.result]
       tags          = { user = "readonly" }
     }
   }
@@ -67,7 +67,7 @@ module "memory_db" {
   # Parameter group
   parameter_group_name        = "${local.name}-param-group"
   parameter_group_description = "Example MemoryDB parameter group"
-  parameter_group_family      = "memorydb_redis6"
+  parameter_group_family      = "memorydb_redis7"
   parameter_group_parameters = [
     {
       name  = "activedefrag"
@@ -95,7 +95,7 @@ module "memory_db" {
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "~> 4.0"
+  version = "~> 5.0"
 
   name = local.name
   cidr = "10.99.0.0/18"
@@ -139,8 +139,6 @@ resource "aws_sns_topic" "example" {
 }
 
 resource "random_password" "password" {
-  for_each = toset(["admin", "readonly"])
-
   length           = 16
   special          = true
   override_special = "_%@"

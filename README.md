@@ -118,13 +118,13 @@ Examples codified under the [`examples`](https://github.com/terraform-aws-module
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.47 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.47 |
 
 ## Modules
 
@@ -185,7 +185,7 @@ No modules.
 | <a name="input_tags"></a> [tags](#input\_tags) | A map of tags to use on all resources | `map(string)` | `{}` | no |
 | <a name="input_tls_enabled"></a> [tls\_enabled](#input\_tls\_enabled) | A flag to enable in-transit encryption on the cluster. When set to `false`, the `acl_name` must be `open-access`. Defaults to `true` | `bool` | `null` | no |
 | <a name="input_use_name_prefix"></a> [use\_name\_prefix](#input\_use\_name\_prefix) | Determines whether `name` is used as a prefix for the cluster | `bool` | `false` | no |
-| <a name="input_users"></a> [users](#input\_users) | A map of user definitions (maps) to be created | `map(any)` | `{}` | no |
+| <a name="input_users"></a> [users](#input\_users) | A map of user definitions (maps) to be created | `any` | `{}` | no |
 
 ## Outputs
 
