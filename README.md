@@ -112,7 +112,7 @@ Examples codified under the [`examples`](https://github.com/terraform-aws-module
 
 - [Complete](https://github.com/terraform-aws-modules/terraform-aws-memory-db/tree/master/examples/complete)
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -206,7 +206,7 @@ No modules.
 | <a name="output_subnet_group_id"></a> [subnet\_group\_id](#output\_subnet\_group\_id) | Name of the subnet group |
 | <a name="output_subnet_group_vpc_id"></a> [subnet\_group\_vpc\_id](#output\_subnet\_group\_vpc\_id) | The VPC in which the subnet group exists |
 | <a name="output_users"></a> [users](#output\_users) | Map of attributes for the users created |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->
 
 ## License
 
