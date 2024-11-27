@@ -32,8 +32,14 @@ variable "description" {
   default     = null
 }
 
+variable "engine" {
+  description = "The engine that will run on your nodes. Supported values are redis and valkey"
+  type        = string
+  default     = null
+}
+
 variable "engine_version" {
-  description = "Version number of the Redis engine to be used for the cluster. Downgrades are not supported"
+  description = "Version number of the engine to be used for the cluster. Downgrades are not supported"
   type        = string
   default     = null
 }

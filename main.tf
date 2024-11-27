@@ -20,6 +20,7 @@ resource "aws_memorydb_cluster" "this" {
   name_prefix = var.use_name_prefix ? "${var.name}-" : null
   description = var.description
 
+  engine                     = var.engine
   engine_version             = var.engine_version
   auto_minor_version_upgrade = var.auto_minor_version_upgrade
   port                       = var.port
