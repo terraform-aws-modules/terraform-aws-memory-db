@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.2.0](https://github.com/terraform-aws-modules/terraform-aws-memory-db/compare/v2.1.0...v2.2.0) (2024-11-30)
+
+
+### Features
+
+* Support `engine` argument and `valkey` ([#10](https://github.com/terraform-aws-modules/terraform-aws-memory-db/issues/10)) ([ca89223](https://github.com/terraform-aws-modules/terraform-aws-memory-db/commit/ca8922385e93a7fce0fecfbb66b8f6e368a8d266))
+
+
+### Bug Fixes
+
+* Update CI workflow versions to latest ([#9](https://github.com/terraform-aws-modules/terraform-aws-memory-db/issues/9)) ([c8540d6](https://github.com/terraform-aws-modules/terraform-aws-memory-db/commit/c8540d6cea45cd7cfb61793838c097f14c64c0fd))
+
 ## [2.1.0](https://github.com/terraform-aws-modules/terraform-aws-memory-db/compare/v2.0.1...v2.1.0) (2024-05-07)
 
 
