@@ -111,6 +111,7 @@ module "memory_db" {
 Examples codified under the [`examples`](https://github.com/terraform-aws-modules/terraform-aws-memory-db/tree/master/examples) are intended to give users references for how to use the module(s) as well as testing/validating changes to the source code of the module. If contributing to the project, please be sure to make any appropriate updates to the relevant examples to allow maintainers to test your changes and to keep the examples up to date for users. Thank you!
 
 - [Complete](https://github.com/terraform-aws-modules/terraform-aws-memory-db/tree/master/examples/complete)
+- [Valkey](https://github.com/terraform-aws-modules/terraform-aws-memory-db/tree/master/examples/valkey)
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
@@ -118,13 +119,13 @@ Examples codified under the [`examples`](https://github.com/terraform-aws-module
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.47 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.78 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.47 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.78 |
 
 ## Modules
 
@@ -156,7 +157,8 @@ No modules.
 | <a name="input_create_users"></a> [create\_users](#input\_create\_users) | Determines whether to create users specified | `bool` | `true` | no |
 | <a name="input_data_tiering"></a> [data\_tiering](#input\_data\_tiering) | Must be set to `true` when using a data tiering node type | `bool` | `null` | no |
 | <a name="input_description"></a> [description](#input\_description) | Description for the cluster. Defaults to `Managed by Terraform` | `string` | `null` | no |
-| <a name="input_engine_version"></a> [engine\_version](#input\_engine\_version) | Version number of the Redis engine to be used for the cluster. Downgrades are not supported | `string` | `null` | no |
+| <a name="input_engine"></a> [engine](#input\_engine) | The engine that will run on your nodes. Supported values are redis and valkey | `string` | `null` | no |
+| <a name="input_engine_version"></a> [engine\_version](#input\_engine\_version) | Version number of the engine to be used for the cluster. Downgrades are not supported | `string` | `null` | no |
 | <a name="input_final_snapshot_name"></a> [final\_snapshot\_name](#input\_final\_snapshot\_name) | Name of the final cluster snapshot to be created when this resource is deleted. If omitted, no final snapshot will be made | `string` | `null` | no |
 | <a name="input_kms_key_arn"></a> [kms\_key\_arn](#input\_kms\_key\_arn) | ARN of the KMS key used to encrypt the cluster at rest | `string` | `null` | no |
 | <a name="input_maintenance_window"></a> [maintenance\_window](#input\_maintenance\_window) | Specifies the weekly time range during which maintenance on the cluster is performed. It is specified as a range in the format `ddd:hh24:mi-ddd:hh24:mi` | `string` | `null` | no |

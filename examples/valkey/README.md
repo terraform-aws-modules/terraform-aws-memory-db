@@ -1,4 +1,4 @@
-# Complete AWS MemoryDB Example
+# Valkey AWS MemoryDB Example
 
 Configuration in this directory creates:
 
