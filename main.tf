@@ -29,6 +29,7 @@ resource "aws_memorydb_cluster" "this" {
   num_replicas_per_shard     = var.num_replicas_per_shard
   parameter_group_name       = local.parameter_group_name
   data_tiering               = var.data_tiering
+  multi_region_cluster_name  = var.multi_region_cluster_name
 
   acl_name           = local.acl_name
   kms_key_arn        = var.kms_key_arn
