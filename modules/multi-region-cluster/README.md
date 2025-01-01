@@ -1,5 +1,7 @@
 # multi-region cluster
 
+Provides a multi-region MemoryDB cluster resource.
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 

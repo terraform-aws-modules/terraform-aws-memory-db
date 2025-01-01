@@ -13,7 +13,7 @@ locals {
 }
 
 ################################################################################
-# MemoryDB Module
+# Multi Region MemoryDB Module
 ################################################################################
 
 module "memory_db_disabled" {
@@ -34,7 +34,6 @@ module "multi_region_cluster" {
   node_type                        = "db.r7g.xlarge"
   num_shards                       = 2
 }
-
 
 module "memory_db" {
   source = "../.."

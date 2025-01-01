@@ -7,7 +7,6 @@ Configuration in this directory creates:
 - AWS MemoryDB users
 - AWS MemoryDB ACL
 - AWS MemoryDB subnet group
-- AWS MemoryDB parameter group
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
