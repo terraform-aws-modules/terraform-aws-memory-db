@@ -91,8 +91,8 @@ module "memory_db" {
 }
 
 # Provides example of an additional region cluster that is part of the multi-region cluster
-# Note: Deleting a cluster with existing clusters in other regions can take several hours
-# it places the multi-region cluster into an updating state which is not valid for deletion
+# Note: Deleting a cluster with existing clusters in other regions can take up to several hours
+# It places the multi-region clusters into an updating state which is not valid for deletion
 
 #provider "aws" {
 #  region = "us-west-2"
