@@ -140,6 +140,12 @@ variable "data_tiering" {
   default     = null
 }
 
+variable "multi_region_cluster_name" {
+  description = "The multi region cluster identifier if part of a multi region cluster"
+  type        = string
+  default     = null
+}
+
 ################################################################################
 # User(s)
 ################################################################################
