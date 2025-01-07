@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.3.0](https://github.com/terraform-aws-modules/terraform-aws-memory-db/compare/v2.2.0...v2.3.0) (2025-01-07)
+
+
+### Features
+
+* Support Multi Region Cluster Name argument ([#12](https://github.com/terraform-aws-modules/terraform-aws-memory-db/issues/12)) ([1a7c7ce](https://github.com/terraform-aws-modules/terraform-aws-memory-db/commit/1a7c7cedfdae4ebb89dd3456952084382e2f5001))
+
 ## [2.2.0](https://github.com/terraform-aws-modules/terraform-aws-memory-db/compare/v2.1.0...v2.2.0) (2024-11-30)
 
 
