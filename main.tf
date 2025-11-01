@@ -45,6 +45,7 @@ resource "aws_memorydb_cluster" "this" {
   snapshot_retention_limit = var.snapshot_retention_limit
   snapshot_window          = var.snapshot_window
   final_snapshot_name      = var.final_snapshot_name
+  region                   = var.region
 
   tags = var.tags
 }
@@ -58,13 +59,14 @@ resource "aws_memorydb_user" "this" {
 
   user_name     = each.value.user_name
   access_string = each.value.access_string
+  region        = var.region
 
   authentication_mode {
-    type      = try(each.value.type, "password")
-    passwords = try(each.value.passwords, null)
+    type      = each.value.type
+    passwords = each.value.passwords
   }
 
-  tags = merge(var.tags, lookup(each.value, "tags", {}))
+  tags = merge(var.tags, each.value.tags)
 }
 
 ################################################################################
@@ -78,6 +80,7 @@ resource "aws_memorydb_acl" "this" {
   name_prefix = var.acl_use_name_prefix ? "${local.create_acl_name}-" : null
 
   user_names = distinct(concat([for u in aws_memorydb_user.this : u.id], var.acl_user_names))
+  region     = var.region
 
   lifecycle {
     create_before_destroy = true
@@ -97,6 +100,7 @@ resource "aws_memorydb_parameter_group" "this" {
   name_prefix = var.parameter_group_use_name_prefix ? "${local.create_parameter_group_name}-" : null
   description = var.parameter_group_description
   family      = var.parameter_group_family
+  region      = var.region
 
   dynamic "parameter" {
     for_each = var.parameter_group_parameters
@@ -124,6 +128,7 @@ resource "aws_memorydb_subnet_group" "this" {
   name_prefix = var.subnet_group_use_name_prefix ? "${local.create_subnet_group_name}-" : null
   description = var.subnet_group_description
   subnet_ids  = var.subnet_ids
+  region      = var.region
 
   lifecycle {
     create_before_destroy = true
