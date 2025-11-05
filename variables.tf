@@ -4,6 +4,12 @@ variable "create" {
   default     = true
 }
 
+variable "region" {
+  description = "Region where this resource will be managed. Defaults to the Region set in the provider configuration"
+  type        = string
+  default     = null
+}
+
 variable "tags" {
   description = "A map of tags to use on all resources"
   type        = map(string)
@@ -158,8 +164,15 @@ variable "create_users" {
 
 variable "users" {
   description = "A map of user definitions (maps) to be created"
-  type        = any
-  default     = {}
+  type = map(object({
+    user_name     = string
+    access_string = string
+    type          = optional(string, "password")
+    passwords     = optional(list(string))
+    tags          = optional(map(string), {})
+  }))
+  default  = {}
+  nullable = false
 }
 
 ################################################################################
