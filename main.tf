@@ -16,6 +16,8 @@ locals {
 resource "aws_memorydb_cluster" "this" {
   count = var.create ? 1 : 0
 
+  region = var.region
+
   name        = var.use_name_prefix ? null : var.name
   name_prefix = var.use_name_prefix ? "${var.name}-" : null
   description = var.description
@@ -45,7 +47,6 @@ resource "aws_memorydb_cluster" "this" {
   snapshot_retention_limit = var.snapshot_retention_limit
   snapshot_window          = var.snapshot_window
   final_snapshot_name      = var.final_snapshot_name
-  region                   = var.region
 
   tags = var.tags
 }
@@ -57,9 +58,10 @@ resource "aws_memorydb_cluster" "this" {
 resource "aws_memorydb_user" "this" {
   for_each = { for k, v in var.users : k => v if var.create && var.create_users }
 
+  region = var.region
+
   user_name     = each.value.user_name
   access_string = each.value.access_string
-  region        = var.region
 
   authentication_mode {
     type      = each.value.type
@@ -76,11 +78,12 @@ resource "aws_memorydb_user" "this" {
 resource "aws_memorydb_acl" "this" {
   count = var.create && var.create_acl ? 1 : 0
 
+  region = var.region
+
   name        = var.acl_use_name_prefix ? null : local.create_acl_name
   name_prefix = var.acl_use_name_prefix ? "${local.create_acl_name}-" : null
 
   user_names = distinct(concat([for u in aws_memorydb_user.this : u.id], var.acl_user_names))
-  region     = var.region
 
   lifecycle {
     create_before_destroy = true
@@ -96,11 +99,12 @@ resource "aws_memorydb_acl" "this" {
 resource "aws_memorydb_parameter_group" "this" {
   count = var.create && var.create_parameter_group ? 1 : 0
 
+  region = var.region
+
   name        = var.parameter_group_use_name_prefix ? null : local.create_parameter_group_name
   name_prefix = var.parameter_group_use_name_prefix ? "${local.create_parameter_group_name}-" : null
   description = var.parameter_group_description
   family      = var.parameter_group_family
-  region      = var.region
 
   dynamic "parameter" {
     for_each = var.parameter_group_parameters
@@ -124,11 +128,12 @@ resource "aws_memorydb_parameter_group" "this" {
 resource "aws_memorydb_subnet_group" "this" {
   count = var.create && var.create_subnet_group ? 1 : 0
 
+  region = var.region
+
   name        = var.subnet_group_use_name_prefix ? null : local.create_subnet_group_name
   name_prefix = var.subnet_group_use_name_prefix ? "${local.create_subnet_group_name}-" : null
   description = var.subnet_group_description
   subnet_ids  = var.subnet_ids
-  region      = var.region
 
   lifecycle {
     create_before_destroy = true

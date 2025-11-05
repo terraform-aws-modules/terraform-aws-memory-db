@@ -39,7 +39,7 @@ variable "description" {
 }
 
 variable "engine" {
-  description = "The engine that will run on your nodes. Supported values are redis and valkey"
+  description = "The engine that will run on your nodes. Supported values are `redis` and `valkey`"
   type        = string
   default     = null
 }
@@ -156,6 +156,7 @@ variable "multi_region_cluster_name" {
 # User(s)
 ################################################################################
 
+# TODO - remove at next breaking change
 variable "create_users" {
   description = "Determines whether to create users specified"
   type        = bool
