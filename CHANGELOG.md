@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [3.0.0](https://github.com/terraform-aws-modules/terraform-aws-memory-db/compare/v2.3.1...v3.0.0) (2025-11-05)
+
+### ⚠ BREAKING CHANGES
+
+* Upgrade AWS provider and min required Terraform version to `6.0` and `1.5.7` respectively (#16)
+
+### Features
+
+* Upgrade AWS provider and min required Terraform version to `6.0` and `1.5.7` respectively ([#16](https://github.com/terraform-aws-modules/terraform-aws-memory-db/issues/16)) ([c653545](https://github.com/terraform-aws-modules/terraform-aws-memory-db/commit/c6535457f33815c3af4ad4b184779430c12591e2))
+
 ## [2.3.1](https://github.com/terraform-aws-modules/terraform-aws-memory-db/compare/v2.3.0...v2.3.1) (2025-10-21)
 
 ### Bug Fixes
