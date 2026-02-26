@@ -120,13 +120,13 @@ Examples codified under the [`examples`](https://github.com/terraform-aws-module
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.7 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 6.28 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 6.34 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 6.28 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 6.34 |
 
 ## Modules
 
@@ -161,10 +161,12 @@ No modules.
 | <a name="input_engine"></a> [engine](#input\_engine) | The engine that will run on your nodes. Supported values are `redis` and `valkey` | `string` | `null` | no |
 | <a name="input_engine_version"></a> [engine\_version](#input\_engine\_version) | Version number of the engine to be used for the cluster. Downgrades are not supported | `string` | `null` | no |
 | <a name="input_final_snapshot_name"></a> [final\_snapshot\_name](#input\_final\_snapshot\_name) | Name of the final cluster snapshot to be created when this resource is deleted. If omitted, no final snapshot will be made | `string` | `null` | no |
+| <a name="input_ip_discovery"></a> [ip\_discovery](#input\_ip\_discovery) | Mechanism that the cluster uses to discover IP addresses. Valid values are ipv4 and ipv6. Defaults to ipv4. To specify ipv6, network\_type must be ipv6 or dual\_stack | `string` | `null` | no |
 | <a name="input_kms_key_arn"></a> [kms\_key\_arn](#input\_kms\_key\_arn) | ARN of the KMS key used to encrypt the cluster at rest | `string` | `null` | no |
 | <a name="input_maintenance_window"></a> [maintenance\_window](#input\_maintenance\_window) | Specifies the weekly time range during which maintenance on the cluster is performed. It is specified as a range in the format `ddd:hh24:mi-ddd:hh24:mi` | `string` | `null` | no |
 | <a name="input_multi_region_cluster_name"></a> [multi\_region\_cluster\_name](#input\_multi\_region\_cluster\_name) | The multi region cluster identifier if part of a multi region cluster | `string` | `null` | no |
 | <a name="input_name"></a> [name](#input\_name) | Cluster name - also default name used on all resources if more specific resource names are not provided | `string` | `""` | no |
+| <a name="input_network_type"></a> [network\_type](#input\_network\_type) | IP address type for the cluster. Valid values are ipv4, ipv6 and dual\_stack. Defaults to ipv4 | `string` | `null` | no |
 | <a name="input_node_type"></a> [node\_type](#input\_node\_type) | The compute and memory capacity of the nodes in the cluster. See AWS documentation on [supported node types](https://docs.aws.amazon.com/memorydb/latest/devguide/nodes.supportedtypes.html) as well as [vertical scaling](https://docs.aws.amazon.com/memorydb/latest/devguide/cluster-vertical-scaling.html) | `string` | `null` | no |
 | <a name="input_num_replicas_per_shard"></a> [num\_replicas\_per\_shard](#input\_num\_replicas\_per\_shard) | The number of replicas to apply to each shard, up to a maximum of 5. Defaults to `1` (i.e. 2 nodes per shard) | `number` | `null` | no |
 | <a name="input_num_shards"></a> [num\_shards](#input\_num\_shards) | The number of shards in the cluster. Defaults to `1` | `number` | `null` | no |

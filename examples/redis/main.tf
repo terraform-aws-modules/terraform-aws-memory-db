@@ -49,6 +49,7 @@ module "memory_db" {
   sns_topic_arn            = aws_sns_topic.example.arn
   snapshot_retention_limit = 7
   snapshot_window          = "05:00-09:00"
+  network_type = "dual_stack"
 
   # Users
   users = {

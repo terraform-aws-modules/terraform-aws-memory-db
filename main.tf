@@ -38,6 +38,8 @@ resource "aws_memorydb_cluster" "this" {
   tls_enabled        = var.tls_enabled
   security_group_ids = var.security_group_ids
   subnet_group_name  = local.subnet_group_name
+  ip_discovery       = var.ip_discovery
+  network_type       = var.network_type
 
   maintenance_window = var.maintenance_window
   sns_topic_arn      = var.sns_topic_arn

@@ -152,6 +152,18 @@ variable "multi_region_cluster_name" {
   default     = null
 }
 
+variable "ip_discovery" {
+  description = "Mechanism that the cluster uses to discover IP addresses. Valid values are ipv4 and ipv6. Defaults to ipv4. To specify ipv6, network_type must be ipv6 or dual_stack"
+  type        = string
+  default     = null
+}
+
+variable "network_type" {
+  description = "IP address type for the cluster. Valid values are ipv4, ipv6 and dual_stack. Defaults to ipv4"
+  type        = string
+  default     = null
+}
+
 ################################################################################
 # User(s)
 ################################################################################
