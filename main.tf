@@ -7,6 +7,10 @@ locals {
 
   create_subnet_group_name = coalesce(var.subnet_group_name, var.name)
   subnet_group_name        = var.create && var.create_subnet_group ? aws_memorydb_subnet_group.this[0].id : var.subnet_group_name
+
+  create_security_group = var.create && var.create_security_group
+  security_group_name   = try(coalesce(var.security_group_name, var.name), "")
+  security_group_ids    = concat(aws_security_group.this[0].id, var.security_group_ids)
 }
 
 ################################################################################
@@ -36,7 +40,7 @@ resource "aws_memorydb_cluster" "this" {
   acl_name           = local.acl_name
   kms_key_arn        = var.kms_key_arn
   tls_enabled        = var.tls_enabled
-  security_group_ids = var.security_group_ids
+  security_group_ids = local.security_group_ids
   subnet_group_name  = local.subnet_group_name
   ip_discovery       = var.ip_discovery
   network_type       = var.network_type
@@ -142,4 +146,65 @@ resource "aws_memorydb_subnet_group" "this" {
   }
 
   tags = merge(var.tags, var.subnet_group_tags)
+}
+
+################################################################################
+# Security Group
+################################################################################
+
+resource "aws_security_group" "this" {
+  count = local.create_security_group ? 1 : 0
+
+  name                   = var.security_group_use_name_prefix ? null : local.security_group_name
+  name_prefix            = var.security_group_use_name_prefix ? "${local.security_group_name}-" : null
+  description            = var.security_group_description
+  vpc_id                 = data.aws_subnet.this[0].vpc_id
+  region                 = var.region
+  revoke_rules_on_delete = true
+
+  tags = merge(var.tags, var.security_group_tags)
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+resource "aws_vpc_security_group_ingress_rule" "this" {
+  for_each = { for k, v in var.security_group_rules : k => v if local.create_security_group && try(v.type, "ingress") == "ingress" }
+
+  # Required
+  security_group_id = aws_security_group.this[0].id
+  ip_protocol       = try(each.value.ip_protocol, "tcp")
+
+  # Optional
+  description                  = try(each.value.description, null)
+  cidr_ipv4                    = lookup(each.value, "cidr_ipv4", null)
+  cidr_ipv6                    = lookup(each.value, "cidr_ipv6", null)
+  from_port                    = try(each.value.from_port, 443)
+  to_port                      = try(each.value.to_port, 443)
+  prefix_list_id               = lookup(each.value, "prefix_list_id", null)
+  referenced_security_group_id = lookup(each.value, "referenced_security_group_id", null)
+  region                       = try(each.value.region, var.region)
+
+  tags = merge(var.tags, var.security_group_tags, try(each.value.tags, {}))
+}
+
+resource "aws_vpc_security_group_egress_rule" "this" {
+  for_each = { for k, v in var.security_group_rules : k => v if local.create_security_group && try(v.type, "ingress") == "egress" }
+
+  # Required
+  security_group_id = aws_security_group.this[0].id
+  ip_protocol       = try(each.value.ip_protocol, "tcp")
+
+  # Optional
+  description                  = try(each.value.description, null)
+  cidr_ipv4                    = lookup(each.value, "cidr_ipv4", null)
+  cidr_ipv6                    = lookup(each.value, "cidr_ipv6", null)
+  from_port                    = try(each.value.from_port, null)
+  to_port                      = try(each.value.to_port, null)
+  prefix_list_id               = lookup(each.value, "prefix_list_id", null)
+  referenced_security_group_id = lookup(each.value, "referenced_security_group_id", null)
+  region                       = try(each.value.region, var.region)
+
+  tags = merge(var.tags, var.security_group_tags, try(each.value.tags, {}))
 }
