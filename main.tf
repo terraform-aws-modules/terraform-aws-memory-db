@@ -10,7 +10,8 @@ locals {
 
   create_security_group = var.create && var.create_security_group
   security_group_name   = try(coalesce(var.security_group_name, var.name), "")
-  security_group_ids    = concat(aws_security_group.this[0].id, var.security_group_ids)
+  security_group_ids    = concat(aws_security_group.this[*].id, var.security_group_ids)
+  security_group_vpc_id = try(coalesce(var.vpc_id, data.aws_subnet.this[0].vpc_id), null)
 }
 
 ################################################################################
@@ -152,15 +153,23 @@ resource "aws_memorydb_subnet_group" "this" {
 # Security Group
 ################################################################################
 
+data "aws_subnet" "this" {
+  count = local.create_security_group && var.vpc_id == null && length(var.subnet_ids) > 0 ? 1 : 0
+
+  region = var.region
+
+  id = element(var.subnet_ids, 0)
+}
+
 resource "aws_security_group" "this" {
   count = local.create_security_group ? 1 : 0
 
   name                   = var.security_group_use_name_prefix ? null : local.security_group_name
   name_prefix            = var.security_group_use_name_prefix ? "${local.security_group_name}-" : null
   description            = var.security_group_description
-  vpc_id                 = data.aws_subnet.this[0].vpc_id
+  vpc_id                 = local.security_group_vpc_id
   region                 = var.region
-  revoke_rules_on_delete = true
+  revoke_rules_on_delete = var.security_group_revoke_rules_on_delete
 
   tags = merge(var.tags, var.security_group_tags)
 
