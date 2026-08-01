@@ -118,14 +118,14 @@ Examples codified under the [`examples`](https://github.com/terraform-aws-module
 ## Requirements
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.7 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 6.34 |
 
 ## Providers
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="provider_aws"></a> [aws](#provider\_aws) | >= 6.34 |
 
 ## Modules
@@ -135,7 +135,7 @@ No modules.
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [aws_memorydb_acl.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/memorydb_acl) | resource |
 | [aws_memorydb_cluster.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/memorydb_cluster) | resource |
 | [aws_memorydb_parameter_group.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/memorydb_parameter_group) | resource |
@@ -145,7 +145,7 @@ No modules.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_acl_name"></a> [acl\_name](#input\_acl\_name) | Name of ACL to be created if `create_acl` is `true`, otherwise its the name of an existing ACL to use if `create_acl` is `false` | `string` | `null` | no |
 | <a name="input_acl_tags"></a> [acl\_tags](#input\_acl\_tags) | Additional tags for the ACL created | `map(string)` | `{}` | no |
 | <a name="input_acl_use_name_prefix"></a> [acl\_use\_name\_prefix](#input\_acl\_use\_name\_prefix) | Determines whether `acl_name` is used as a prefix | `bool` | `false` | no |
@@ -197,7 +197,7 @@ No modules.
 ## Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_acl_arn"></a> [acl\_arn](#output\_acl\_arn) | The ARN of the ACL |
 | <a name="output_acl_id"></a> [acl\_id](#output\_acl\_id) | Name of the ACL |
 | <a name="output_acl_minimum_engine_version"></a> [acl\_minimum\_engine\_version](#output\_acl\_minimum\_engine\_version) | The minimum engine version supported by the ACL |
