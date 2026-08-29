@@ -44,11 +44,34 @@ module "memory_db" {
   data_tiering               = true
 
   tls_enabled              = true
-  security_group_ids       = [module.security_group.security_group_id]
   maintenance_window       = "sun:23:00-mon:01:30"
   sns_topic_arn            = aws_sns_topic.example.arn
   snapshot_retention_limit = 7
   snapshot_window          = "05:00-09:00"
+
+  # Security group (created and managed by this module)
+  create_security_group      = true
+  security_group_name        = local.name
+  security_group_description = "Security group for ${local.name} MemoryDB cluster"
+  vpc_id                     = module.vpc.vpc_id
+
+  security_group_rules = {
+    ingress_redis = {
+      type        = "ingress"
+      description = "Redis access from within the VPC"
+      cidr_ipv4   = module.vpc.vpc_cidr_block
+      from_port   = 6379
+      to_port     = 6379
+      ip_protocol = "tcp"
+    }
+    egress_all = {
+      type        = "egress"
+      description = "Allow all outbound traffic"
+      cidr_ipv4   = "0.0.0.0/0"
+      ip_protocol = "-1"
+    }
+  }
+  security_group_revoke_rules_on_delete = true
 
   # Users
   users = {
@@ -123,23 +146,6 @@ module "vpc" {
   manage_default_security_group  = true
   default_security_group_ingress = []
   default_security_group_egress  = []
-
-  tags = local.tags
-}
-
-module "security_group" {
-  source  = "terraform-aws-modules/security-group/aws"
-  version = "~> 5.0"
-
-  name        = local.name
-  description = "Security group for ${local.name}"
-  vpc_id      = module.vpc.vpc_id
-
-  ingress_cidr_blocks = module.vpc.private_subnets_cidr_blocks
-  ingress_rules       = ["redis-tcp"]
-
-  egress_cidr_blocks = [module.vpc.vpc_cidr_block]
-  egress_rules       = ["all-all"]
 
   tags = local.tags
 }

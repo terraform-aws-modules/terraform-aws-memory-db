@@ -95,7 +95,7 @@ variable "tls_enabled" {
 variable "security_group_ids" {
   description = "Set of VPC Security Group ID-s to associate with this cluster"
   type        = list(string)
-  default     = null
+  default     = []
 }
 
 variable "maintenance_window" {
@@ -304,6 +304,58 @@ variable "subnet_ids" {
 
 variable "subnet_group_tags" {
   description = "Additional tags for the subnet group created"
+  type        = map(string)
+  default     = {}
+}
+
+################################################################################
+# Security Group
+################################################################################
+
+variable "create_security_group" {
+  description = "Determines if a security group is created"
+  type        = bool
+  default     = true
+}
+
+variable "vpc_id" {
+  description = "ID of the VPC where the security group will be created. When not provided, it is resolved from the first subnet in `subnet_ids`; required when `create_security_group` is `true` and no subnets are passed (e.g. an existing subnet group is referenced by name)"
+  type        = string
+  default     = null
+}
+
+variable "security_group_name" {
+  description = "Name to use on security group created"
+  type        = string
+  default     = null
+}
+
+variable "security_group_use_name_prefix" {
+  description = "Determines whether the security group name (`security_group_name`) is used as a prefix"
+  type        = bool
+  default     = false
+}
+
+variable "security_group_description" {
+  description = "Description of the security group created"
+  type        = string
+  default     = null
+}
+
+variable "security_group_revoke_rules_on_delete" {
+  description = "Determines whether to revoke all of the security group's attached ingress and egress rules before deleting the security group itself. Defaults to `true`"
+  type        = bool
+  default     = true
+}
+
+variable "security_group_rules" {
+  description = "Security group ingress and egress rules to add to the security group created"
+  type        = any
+  default     = {}
+}
+
+variable "security_group_tags" {
+  description = "A map of additional tags to add to the security group created"
   type        = map(string)
   default     = {}
 }

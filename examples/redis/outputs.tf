@@ -93,3 +93,17 @@ output "subnet_group_vpc_id" {
   description = "The VPC in which the subnet group exists"
   value       = module.memory_db.subnet_group_vpc_id
 }
+
+################################################################################
+# Security Group
+################################################################################
+
+output "security_group_id" {
+  description = "ID of the security group"
+  value       = module.memory_db.security_group_id
+}
+
+output "security_group_arn" {
+  description = "ARN of the security group"
+  value       = module.memory_db.security_group_arn
+}

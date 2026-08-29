@@ -93,3 +93,17 @@ output "subnet_group_vpc_id" {
   description = "The VPC in which the subnet group exists"
   value       = try(aws_memorydb_subnet_group.this[0].vpc_id, null)
 }
+
+################################################################################
+# Security Group
+################################################################################
+
+output "security_group_id" {
+  description = "ID of the security group"
+  value       = try(aws_security_group.this[0].id, null)
+}
+
+output "security_group_arn" {
+  description = "ARN of the security group"
+  value       = try(aws_security_group.this[0].arn, null)
+}
